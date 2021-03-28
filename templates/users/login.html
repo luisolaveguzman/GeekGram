@@ -1,0 +1,31 @@
+{% extends 'users/base.html' %}
+
+{% block head_content %}
+<title>GeekGram Login</title>
+{% endblock %}
+
+{% block container %}
+
+    {% if error %}
+        <p class="alert alert-danger">{{error}}</p>
+    {% endif %}
+    {% if alert %}
+        <p class="alert alert-info">{{alert}}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Usuario" name="username" />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Contraseña" name="password" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block mt-5" type="submit">Ingresar</button>
+        </div>
+        <div class="form-group">
+            <a href="{% url 'signup' %}">Registrarse</a>
+        </div>
+    </form>
+{% endblock %}

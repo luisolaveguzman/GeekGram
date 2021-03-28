@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+
+{% block head_content %}
+<title>GeekGram | Registro</title>
+{% endblock %}
+
+{% block container %}
+    <h4 class="text-center">Registro de usuarios</h4>
+    {% if error %}
+        <p class="alert alert-danger">{{error}}</p>
+    {% endif %}
+    <p></p>
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Usuario" name="username" required="true">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Correo" name="email" required="true">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nombre" name="first_name" required="true">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Apellido" name="last_name" required="true">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Clave" name="password" required="true">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Clave de confirmación" name="password_confirmation" required="true">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block mt-5" type="submit">Registrarse</button>
+        </div>
+        <div class="form-group">
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+        </div>
+    </form>
+{% endblock %}
